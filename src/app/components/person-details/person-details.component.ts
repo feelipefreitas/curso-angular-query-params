@@ -13,6 +13,8 @@ export class PersonDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('PERSON DETAILS SNAPSHOT', this._activatedRoute.snapshot.queryParams);
+
     this._activatedRoute.queryParams.subscribe(params => {
       console.log('PERSON DETAILS Query Params', params);
     });

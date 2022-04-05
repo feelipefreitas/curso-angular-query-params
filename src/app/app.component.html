@@ -1,4 +1,24 @@
 <button (click)="loadPeopleList()">Ir para o PeopleListComponent</button>
 <button (click)="loadPersonDetails()">Ir para o PersonDetailsComponent</button>
 
+<div>
+    <a 
+        [routerLink]="['/people-list']" 
+        [queryParams]="{ personAge: 25, teste: 'ola mundo' }"
+        queryParamsHandling="merge"
+    >
+        Ir para o PeopleListComponent
+    </a>
+</div>
+
+<div>
+    <a 
+        [routerLink]="['/person-details']"
+        [queryParams]="{ personPhone: 25343434 }"
+        queryParamsHandling="merge"
+    >
+        Ir para o PersonDetailsComponent
+    </a>
+</div>
+
 <router-outlet></router-outlet>

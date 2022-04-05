@@ -26,16 +26,18 @@ export class AppComponent implements OnInit {
       queryParams: {
         personId: this.acc += 1,
         personName: 'Joao'
-      }
+      },
+      queryParamsHandling: 'merge'
     });
   }
 
   loadPersonDetails() {
     this._router.navigate(['person-details'], {
       queryParams: {
-        personId: this.acc += 1,
-        personName: 'Joao'
-      }
+        personAccount: 555,
+        personCountry: 'Brasil'
+      },
+      queryParamsHandling: 'merge'
     });
   }
 
