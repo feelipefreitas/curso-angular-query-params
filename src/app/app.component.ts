@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IQueryParamsData } from './interfaces/query-parms-data.interface';
 import { QueryParamsService } from './services/query-params.service';
 
@@ -9,22 +9,39 @@ import { QueryParamsService } from './services/query-params.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  acc = 0;
+
   constructor(
+    private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _queryParamsService: QueryParamsService
   ) { }
 
   ngOnInit(): void {
     this.initializeQueryParams();
+  }
 
-    setTimeout(() => {
-      console.log('query params obj', this._queryParamsService.returnQueryParmsObj());
-    }, 3000);
+  loadPeopleList() {
+    this._router.navigate(['people-list'], {
+      queryParams: {
+        personId: this.acc += 1,
+        personName: 'Joao'
+      }
+    });
+  }
+
+  loadPersonDetails() {
+    this._router.navigate(['person-details'], {
+      queryParams: {
+        personId: this.acc += 1,
+        personName: 'Joao'
+      }
+    });
   }
 
   private initializeQueryParams() {
     this._activatedRoute.queryParams.subscribe((queryParams) => {
-      console.log('queryParams', queryParams);
+      console.log('APP COMPONENT Query Params:', queryParams);
       this._queryParamsService.initializeQueryParams(queryParams as IQueryParamsData);
     });
   }
